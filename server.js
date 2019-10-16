@@ -5,14 +5,15 @@ var http = require('http');
 var path = require('path');
 var port = process.env.PORT || 3000;
 var app = express();
+const cors = require('cors');
 
 // Imposta la struttura delle cartelle
+var corsOptions = {
+  origin: '*',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204 
+}
+app.use(cors(corsOptions));
 app.use(express.static(__dirname + '/public'));
-app.use((req, res, next) => {
-   res.header("Access-Control-Allow-Origin", "*");
-   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-   next();
 }) 
 // imposta la route
 app.get('/', (req, res,next) => {
