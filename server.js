@@ -11,8 +11,9 @@ var app = express();
 app.use(express.static(__dirname + '/public'));
 
 // imposta la route
+
 var port = process.env.PORT
-app.use(cors());
+app.options('*', cors())
 app.get('/', (req, res,next) => {
     res.sendFile(path.join(__dirname, 'public/index.html'));
 });
